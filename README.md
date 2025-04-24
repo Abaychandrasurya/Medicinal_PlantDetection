@@ -7,7 +7,7 @@ This project identifies medicinal plants using deep learning and provides inform
 - Use a responsive frontend for user interaction.
 
 Happy Identifying! 🌱
-
+''' TEXT
 Medicinal-Plant-Detection/
 │
 ├── backend/
@@ -36,7 +36,7 @@ Medicinal-Plant-Detection/
 ├── README.md          # Project README file
 │
 └── classify.py      # Script for image classification (duplicate)
-
+'''
 
 Steps to Run the Project
 
