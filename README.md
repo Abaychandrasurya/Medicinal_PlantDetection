@@ -8,36 +8,6 @@ This project identifies medicinal plants using deep learning and provides inform
 
 Happy Identifying! 🌱
 
-Medicinal-Plant-Detection/
-│
-├── backend/
-│   ├── input.py     # Flask backend for image upload and classification
-│   └── app.py       # Flask app for serving the model
-│
-├── frontend/
-│   └── index.html   # HTML frontend for user interface
-│
-├── model/
-│   ├── train_model.py   # Script to train the plant classification model
-│   ├── test_model.py    # Script to test the trained model
-│   ├── medicinal_plant.py
-│   │   ├── classify.py  # Script for image classification (TensorFlow)
-│   │   ├── cnn.py       # Script for defining a CNN model (TensorFlow)
-│   │   └── edgeDetection.py # Script for edge detection
-│   └── plant_model.h5   # The trained model file (will be created after training)
-│
-├── utils/
-│   └── edgeDetection.py # Utility script for edge detection (duplicate)
-│
-├── tf_files/          # Directory for TensorFlow-related files (labels, graph)
-│   ├── retrained_graph.pb   # Trained TensorFlow graph
-│   └── retrained_labels.txt  # Labels for the plant classes
-│
-├── README.md          # Project README file
-│
-└── classify.py      # Script for image classification (duplicate)
-
-
 Steps to Run the Project
 
 Prerequisites:
