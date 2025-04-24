@@ -29,20 +29,15 @@ Setup and Execution Guide
 - Set up a virtual environment to manage dependencies:python3.12 -m venv tensorflow_env
 
 - Activate the virtual environment:tensorflow_env\Scripts\activate  # On Windows
-source tensorflow_env/bin/activate  # On macOS/Linux
+- source tensorflow_env/bin/activate  # On macOS/Linux
 
 - Upgrade pip and install required dependencies:pip install --upgrade pip setuptools
-pip install tensorflow Flask pymongo
+- pip install tensorflow Flask pymongo
 
 
 2. Prepare Your Dataset
 - Place your medicinal plant images in a directory. The structure should be:dataset/
-├── Aloe_Vera/
-│   ├── image1.jpg
-│   ├── image2.jpg
-├── Tulsi/
-│   ├── image1.jpg
-│   ├── image2.jpg
+
 
 - Modify the dataset_path variable in model/train_model.py:dataset_path = r"path/to/your/plant/images"  # Replace with your path
 
@@ -54,13 +49,13 @@ pip install tensorflow Flask pymongo
 
 4. Prepare TensorFlow Files (If Necessary)
 - Ensure tf_files/ contains:retrained_graph.pb  # TensorFlow graph
-retrained_labels.txt  # Plant labels
+- retrained_labels.txt  # Plant labels
 
 - If missing, generate them using a TensorFlow retraining script (retrain.py).
 
 5. Start the Backend
 - Navigate to backend/ and run:python backend/input.py  # OR
-python backend/app.py
+- python backend/app.py
 
 - Flask server starts at http://127.0.0.1:5000/.
 
@@ -72,6 +67,3 @@ python backend/app.py
 - Upload or capture plant images.
 - Click "Identify Plant" to classify images.
 - View results and predictions.
-
-
-
