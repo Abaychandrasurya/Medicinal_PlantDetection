@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerbID - Medicinal Plant Identification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* (CSS styles - as provided in the original file) */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary-color: #8BC34A;
+            --accent-color: #CDDC39;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #757575;
+            --white: #ffffff;
+            --black: #000000;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* ... (rest of the CSS styles) */
+    </style>
+</head>
+
+<body>
+    <div class="login-page" id="loginPage">
+        <div class="login-container">
+            <span class="close-login">&times;</span>
+            <h2>Welcome to HerbID</h2>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <div class="login-options">
+                    <a href="#">Forgot password?</a>
+                    <a href="#" id="showSignup">Create account</a>
+                </div>
+            </form>
+            <div class="social-login">
+                <p>Or login with</p>
+                <div class="social-buttons">
+                    <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <header id="mainHeader">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1> Welcome to HerbID</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#plant-library">Plant Library</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-outline" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="mainContent">
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2> IDENTIFICATION OF MEDICINAL PLANT </h2>
+                    <p>Upload a photo of a medicinal plant and discover its medicinal properties, Uses, and safety
+                        Information.</p>
+
+                    <div class="capture-options">
+                        <div class="capture-option" id="uploadOption">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Upload Image</span>
+                        </div>
+                        <div class="capture-option" id="cameraOption">
+                            <i class="fas fa-camera"></i>
+                            <span>Use Camera</span>
+                        </div>
+                    </div>
+
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop plant image here or click to browse</p>
+                        <input type="file" id="fileInput" accept="image/*" aria-label="Choose a plant image to upload">
+                    </div>
+
+                    <div class="camera-container" id="cameraContainer">
+                        <video id="cameraPreview" autoplay playsinline></video>
+                        <div class="camera-controls">
+                            <button class="btn btn-primary" id="captureBtn"><i class="fas fa-camera"></i> Capture</button>
+                            <button class="btn btn-outline" id="cancelCameraBtn">Cancel</button>
+                        </div>
+                    </div>
+
+                    <div class="submit-button" style="text-align: center; margin-top: 20px;">
+                        <button class="btn btn-primary" id="submitBtn" style="padding: 12px 30px; font-size: 1.1rem;">
+                            <i class="fas fa-search"></i> Identify Plant
+                        </button>
+                    </div>
+
+                    <div class="hero-features">
+                        <div class="feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Instant Identification</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-database"></i>
+                            <span>15,000+ Plant Database</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-book-medical"></i>
+                            <span>Medicinal Uses</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                        alt="Medicinal plants">
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Upload a Photo</h3>
+                        <p>Take or upload a clear photo of the plant you want to identify.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>AI Analysis</h3>
+                        <p>Our advanced AI analyzes the plant's visual features.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Get Results</h3>
+                        <p>Receive detailed information about the plant's identity and medicinal properties.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="plant-library" class="plant-library">
+            <div class="container">
+                <h2>Explore Common Medicinal Plants</h2>
+                <div class="plants-grid">
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT1bJ9XYBfY2kp1sbnCqY7Xn78o0Xl22WL4kGlQC_d4Wh-uVW-B"
+                            alt="Aloe Vera">
+                        <h3>Aloe Vera</h3>
+                        <p>Known for skin healing and digestive health. Contains antioxidants and helps with burns and
+                            wounds.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQCZrmXZMoWvjUbiL9VL79oeIA1YmvodmTNjdEtYGSKreYk4g7p"
+                            alt="Turmeric">
+                        <h3>Turmeric</h3>
+                        <p>Anti-inflammatory and antioxidant properties. Helps with arthritis, depression, and brain
+                            health.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRwTMP0IfNe_DawQzz7-H64GY56SW5UL-vTzKy4m-nthRQJbkWP"
+                            alt="Ginger">
+                        <h3>Ginger</h3>
+                        <p>Helps with nausea, digestion, and inflammation. Effective against morning sickness and muscle
+                            pain.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrV9f-UnwQPabRP3gdYb5vcGBkrWre0F80W1T-RSnRtjn4XB9Y"
+                            alt="Echinacea">
+                        <h3>Echinacea</h3>
+                        <p>Boosts immune system and fights infections. Reduces duration of common cold.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9X43XiWvpMd5xhZUifZBXaR9nQVq7Ajet1r6b50XdFLjhTioF"
+                            alt="Ginseng">
+                        <h3>Ginseng</h3>
+                        <p>Improves energy levels and cognitive function. May help with erectile dysfunction.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcUC7VgkWuG892kwJ1ajLSq1E7DqRVOc4R1OcS1Z_6Zs-kkIW7"
+                            alt="Peppermint">
+                        <h3>Peppermint</h3>
+                        <p>Relieves digestive issues and headaches. Has antibacterial properties.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSMLaSwBv2bc9AAk0xNzvCe3lHvtizfEQ274nngASMYCa2HNdUX"
+                            alt="Chamomile">
+                        <h3>Chamomile</h3>
+                        <p>Promotes relaxation and sleep. Helps with anxiety and digestive issues.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQEd2WFh572DtVuHbPmGVGz5BffEzMlH93WdDw5HND1ncfZcW5_"
+                            alt="Garlic">
+                        <h3>Garlic</h3>
+                        <p>Boosts immune system and heart health. Has antimicrobial properties.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                </div>
+                <button class="btn btn-primary">View All Plants</button>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2>What Our Users Say</h2>
+                <div class="testimonial-cards">
+                    <div class="testimonial">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"HerbID helped me identify a plant in my backyard that turned out to be a powerful natural remedy
+                            for my headaches."</p>
+                        <div class="user">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah J.">
+                            <span>Sarah</span>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"As a herbal medicine student, this tool has been invaluable for my fieldwork and research."</p>
+                        <div class="user">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T.">
+                            <span>Michael</span>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>"I love being able to identify medicinal plants during my hikes and learn about their traditional
+                            uses."</p>
+                        <div class="user">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya K.">
+                            <span>Priya</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <h2>About HerbID</h2>
+                    <p>HerbID is an ML-powered platform dedicated to helping people identify and learn about medicinal
+                        plants from around the world. Our mission is to bridge traditional herbal knowledge with modern
+                        technology.</p>
+                    <p>Whether you're a herbalist, researcher, or nature enthusiast, HerbID provides accurate,
+                        science-backed information to help you safely explore the world of medicinal plants.</p>
+                    <button class="btn btn-primary">Learn More About Us</button>
+                </div>
+                <div class="about-image">
+                    <img src="https://banner2.cleanpng.com/20180404/jze/avhxdbz2f.webp" alt="About HerbID">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="mainFooter">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-leaf"></i>
+                    <h3>HerbID</h3>
+                    <p>Your guide to medicinal plants</p>
+                </div>
+                <div class="footer-links">
+                    <div class="links-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#how-it-works">How It Works</a></li>
+                            <li><a href="#plant-library">Plant Library</a></li>
+                            <li><a href="#about">About</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Research</a></li>
+                            <li><a href="#">Safety Guide</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for plant tips and updates</p>
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p>&copy; 2025 HerbID. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const loginPage = document.getElementById('loginPage');
+        const loginForm = document.getElementById('loginForm');
+        const mainHeader = document.getElementById('mainHeader');
+        const mainContent = document.getElementById('mainContent');
+        const mainFooter = document.getElementById('mainFooter');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const closeLogin = document.querySelector('.close-login');
+        const uploadOption = document.getElementById('uploadOption');
+        const cameraOption = document.getElementById('cameraOption');
+        const uploadArea = document.getElementById('uploadArea');
+        const cameraContainer = document.getElementById('cameraContainer');
+        const cameraPreview = document.getElementById('cameraPreview');
+        const captureBtn = document.getElementById('captureBtn');
+        const cancelCameraBtn = document.getElementById('cancelCameraBtn');
+        const fileInput = document.getElementById('fileInput');
+        const submitBtn = document.getElementById('submitBtn');
+
+        let stream = null;
+
+        // --- Utility Functions ---
+        function showElement(element) {
+            element.style.display = 'block';
+        }
+
+        function hideElement(element) {
+            element.style.display = 'none';
+        }
+
+        function displayMessage(message, isError = false) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            messageElement.style.color = isError ? 'red' : 'green';
+            document.body.appendChild(messageElement);
+            setTimeout(() => messageElement.remove(), 3000); // Remove after 3 seconds
+        }
+
+        // --- Login Functionality ---
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (email && password) {
+                hideElement(loginPage);
+                showElement(mainHeader);
+                showElement(mainContent);
+                showElement(mainFooter);
+            } else {
+                displayMessage('Please enter both email and password.', true);
+            }
+        }
+
+        function handleLogout() {
+            showElement(loginPage);
+            hideElement(mainHeader);
+            hideElement(mainContent);
+            hideElement(mainFooter);
+            loginForm.reset();
+        }
+
+        // --- Camera Functionality ---
+        async function startCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: 'environment'
+                    }
+                });
+                cameraPreview.srcObject = stream;
+                hideElement(uploadArea);
+                showElement(cameraContainer);
+            } catch (error) {
+                console.error('Camera access error:', error);
+                displayMessage('Could not access camera. Please check permissions.', true);
+            }
+        }
+
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                cameraPreview.srcObject = null;
+            }
+            showElement(uploadArea);
+            hideElement(cameraContainer);
+        }
+
+        function captureImage() {
+            const canvas = document.createElement('canvas');
+            canvas.width = cameraPreview.videoWidth;
+            canvas.height = cameraPreview.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(cameraPreview, 0, 0, canvas.width, canvas.height);
+
+            canvas.toBlob(blob => {
+                const file = new File([blob], 'captured-plant.jpg', {
+                    type: 'image/jpeg'
+                });
+                updateFileInput(file);
+                stopCamera();
+            }, 'image/jpeg', 0.9);
+        }
+
+        // --- File Upload Functionality ---
+        function updateFileInput(file) {
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            fileInput.files = dataTransfer.files;
+            uploadArea.innerHTML = `<i class="fas fa-check-circle"></i><p>${file.name} selected</p>`;
+            uploadArea.classList.add('file-selected');
+        }
+
+        function handleFileInputChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                updateFileInput(file);
+            }
+        }
+
+        function handleDragOver(event) {
+            event.preventDefault();
+            uploadArea.classList.add('highlight');
+        }
+
+        function handleDragLeave() {
+            uploadArea.classList.remove('highlight');
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            uploadArea.classList.remove('highlight');
+
+            const file = event.dataTransfer.files[0];
+            if (file) {
+                updateFileInput(file);
+            }
+        }
+
+        // --- Form Submission and AI Interaction ---
+        async function handleSubmit() {
+            if (!fileInput.files.length) {
+                displayMessage('Please upload or capture an image first.', true);
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/predict', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (data && data.class) {
+                    displayMessage(`🌿 Plant Identified: ${data.class}`, false);
+                } else {
+                    displayMessage('❌ Failed to get prediction. Please try again.', true);
+                }
+
+            } catch (error) {
+                console.error('Fetch error:', error);
+                displayMessage('🚫 Error connecting to the server. Is the Flask app running?', true);
+            }
+        }
+
+        // --- Event Listeners ---
+        loginForm.addEventListener('submit', handleLogin);
+        logoutBtn.addEventListener('click', handleLogout);
+        cameraOption.addEventListener('click', startCamera);
+        uploadOption.addEventListener('click', () => fileInput.click()); // Trigger file input
+        cancelCameraBtn.addEventListener('click', stopCamera);
+        captureBtn.addEventListener('click', captureImage);
+        fileInput.addEventListener('change', handleFileInputChange);
+
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('dragleave', handleDragLeave);
+        uploadArea.addEventListener('drop', handleDrop);
+
+        submitBtn.addEventListener('click', handleSubmit);
+
+        // --- Initialization ---
+        showElement(loginPage); // Show login page initially
+        hideElement(mainHeader);
+        hideElement(mainContent);
+        hideElement(mainFooter);
+    </script>
+</body>
+
+</html>
+
+<!-- DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerbID - Medicinal Plant Identification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary-color: #8BC34A;
+            --accent-color: #CDDC39;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #757575;
+            --white: #ffffff;
+            --black: #000000;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Background Images */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+                        url('https://images.unsplash.com/photo-1534710961216-75c88202f43d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .how-it-works {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .plant-library {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1518492104633-130d0cc84637?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .testimonials {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1526397751294-331021109fbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .about {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: none; /* Initially hidden until login */
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 80px;
+            display: none; /* Initially hidden until login */
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--dark-gray);
+        }
+
+        .upload-area {
+            border: 2px dashed var(--medium-gray);
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .upload-area p {
+            color: var(--dark-gray);
+            margin-bottom: 0;
+        }
+
+        .upload-area:hover, .upload-area.highlight {
+            border-color: var(--primary-color);
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+
+        .upload-area.file-selected {
+            border-color: var(--primary-color);
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .camera-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #cameraPreview {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .camera-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .capture-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .capture-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .capture-option i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .capture-option:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--white);
+            padding: 10px 15px;
+            border-radius: 4px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .feature i {
+            color: var(--primary-color);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 0;
+            text-align: center;
+            display: none; /* Initially hidden until login */
+        }
+
+        .how-it-works h2 {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: var(--primary-dark);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .step {
+            flex: 1;
+            padding: 30px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+        }
+
+        /* Plant Library Section */
+        .plant-library {
+            padding: 80px 0;
+            text-align: center;
+            display: none; /* Initially hidden until login */
+        }
+
+        .plant-library h2 {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: var(--primary-dark);
+        }
+
+        .plants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .plant-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .plant-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plant-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .plant-card h3 {
+            padding: 0 20px;
+            color: var(--primary-dark);
+        }
+
+        .plant-card p {
+            padding: 0 20px;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .plant-card button {
+            margin: 20px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            text-align: center;
+            display: none; /* Initially hidden until login */
+        }
+
+        .testimonials h2 {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: var(--primary-dark);
+        }
+
+        .testimonial-cards {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .testimonial {
+            flex: 1;
+            max-width: 350px;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .rating {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .user img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user span {
+            font-weight: 500;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            display: none; /* Initially hidden until login */
+        }
+
+        .about .container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+        }
+
+        .about button {
+            margin-top: 20px;
+        }
+
+        /* Login Page */
+        .login-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .login-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .close-login {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+        }
+
+        .login-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .login-form button {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .login-options a {
+            color: var(--primary-color);
+        }
+
+        .social-login {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-login p {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .social-login p::before,
+        .social-login p::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background-color: var(--medium-gray);
+        }
+
+        .social-login p::before {
+            left: 0;
+        }
+
+        .social-login p::after {
+            right: 0;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .facebook {
+            background-color: #3b5998;
+        }
+
+        .google {
+            background-color: #db4437;
+        }
+
+        .twitter {
+            background-color: #1da1f2;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+            display: none; /* Initially hidden until login */
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            flex: 2;
+            display: flex;
+            gap: 50px;
+        }
+
+        .links-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .links-column ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .links-column a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-newsletter {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-newsletter h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-newsletter form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-newsletter input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero .container, .about .container {
+                flex-direction: column;
+            }
+            
+            .hero-image, .about-image {
+                order: -1;
+                margin-bottom: 40px;
+            }
+            
+            .steps, .testimonial-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step, .testimonial {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero {
+                padding-top: 200px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .capture-options {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-features {
+                flex-direction: column;
+            }
+            
+            .auth-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .login-container {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-page" id="loginPage">
+        <div class="login-container">
+            <span class="close-login">&times;</span>
+            <h2>Welcome to HerbID</h2>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <div class="login-options">
+                    <a href="#">Forgot password?</a>
+                    <a href="#" id="showSignup">Create account</a>
+                </div>
+            </form>
+            <div class="social-login">
+                <p>Or login with</p>
+                <div class="social-buttons">
+                    <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <header id="mainHeader">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1> Welcome to HerbID</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#plant-library">Plant Library</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-outline" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="mainContent">
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2> IDENTIFICATION OF MEDICINAL PLANT </h2>
+                    <p>Upload a photo of a medicinal plant and discover its medicinal properties, Uses, and safety Information.</p>
+                    
+                    <div class="capture-options">
+                        <div class="capture-option" id="uploadOption">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Upload Image</span>
+                        </div>
+                        <div class="capture-option" id="cameraOption">
+                            <i class="fas fa-camera"></i>
+                            <span>Use Camera</span>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop plant image here or click to browse</p>
+                        <input type="file" id="fileInput" accept="image/*">
+                    </div>
+                    
+                    <div class="camera-container" id="cameraContainer">
+                        <video id="cameraPreview" autoplay playsinline></video>
+                        <div class="camera-controls">
+                            <button class="btn btn-primary" id="captureBtn"><i class="fas fa-camera"></i> Capture</button>
+                            <button class="btn btn-outline" id="cancelCameraBtn">Cancel</button>
+                        </div>
+                    </div>
+                    
+                
+                    <div class="submit-button" style="text-align: center; margin-top: 20px;">
+                        <button class="btn btn-primary" id="submitBtn" style="padding: 12px 30px; font-size: 1.1rem;">
+                            <i class="fas fa-search"></i> Identify Plant
+                        </button>
+                    </div>
+                    
+                    <div class="hero-features">
+                        <div class="feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Instant Identification</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-database"></i>
+                            <span>15,000+ Plant Database</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-book-medical"></i>
+                            <span>Medicinal Uses</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Medicinal plants">
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Upload a Photo</h3>
+                        <p>Take or upload a clear photo of the plant you want to identify.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>AI Analysis</h3>
+                        <p>Our advanced AI analyzes the plant's visual features.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Get Results</h3>
+                        <p>Receive detailed information about the plant's identity and medicinal properties.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="plant-library" class="plant-library">
+            <div class="container">
+                <h2>Explore Common Medicinal Plants</h2>
+                <div class="plants-grid">
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT1bJ9XYBfY2kp1sbnCqY7Xn78o0Xl22WL4kGlQC_d4Wh-uVW-B" alt="Aloe Vera">
+                        <h3>Aloe Vera</h3>
+                        <p>Known for skin healing and digestive health. Contains antioxidants and helps with burns and wounds.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQCZrmXZMoWvjUbiL9VL79oeIA1YmvodmTNjdEtYGSKreYk4g7p" alt="Turmeric">
+                        <h3>Turmeric</h3>
+                        <p>Anti-inflammatory and antioxidant properties. Helps with arthritis, depression, and brain health.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                         <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRwTMP0IfNe_DawQzz7-H64GY56SW5UL-vTzKy4m-nthRQJbkWP" alt="Ginger">
+                        <h3>Ginger</h3>
+                        <p>Helps with nausea, digestion, and inflammation. Effective against morning sickness and muscle pain.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrV9f-UnwQPabRP3gdYb5vcGBkrWre0F80W1T-RSnRtjn4XB9Y" alt="Echinacea">
+                        <h3>Echinacea</h3>
+                        <p>Boosts immune system and fights infections. Reduces duration of common cold.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9X43XiWvpMd5xhZUifZBXaR9nQVq7Ajet1r6b50XdFLjhTioF" alt="Ginseng">
+                        <h3>Ginseng</h3>
+                        <p>Improves energy levels and cognitive function. May help with erectile dysfunction.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcUC7VgkWuG892kwJ1ajLSq1E7DqRVOc4R1OcS1Z_6Zs-kkIW7" alt="Peppermint">
+                        <h3>Peppermint</h3>
+                        <p>Relieves digestive issues and headaches. Has antibacterial properties.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSMLaSwBv2bc9AAk0xNzvCe3lHvtizfEQ274nngASMYCa2HNdUX" alt="Chamomile">
+                        <h3>Chamomile</h3>
+                        <p>Promotes relaxation and sleep. Helps with anxiety and digestive issues.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                    <div class="plant-card">
+                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQEd2WFh572DtVuHbPmGVGz5BffEzMlH93WdDw5HND1ncfZcW5_" alt="Garlic">
+                        <h3>Garlic</h3>
+                        <p>Boosts immune system and heart health. Has antimicrobial properties.</p>
+                        <button class="btn btn-outline">Learn More</button>
+                    </div>
+                </div>
+                <button class="btn btn-primary">View All Plants</button>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2>What Our Users Say</h2>
+                <div class="testimonial-cards">
+                    <div class="testimonial">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"HerbID helped me identify a plant in my backyard that turned out to be a powerful natural remedy for my headaches."</p>
+                        <div class="user">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah J.">
+                            <span>Sarah </span>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"As a herbal medicine student, this tool has been invaluable for my fieldwork and research."</p>
+                        <div class="user">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T.">
+                            <span>Michael </span>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>"I love being able to identify medicinal plants during my hikes and learn about their traditional uses."</p>
+                        <div class="user">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya K.">
+                            <span>Priya </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <h2>About HerbID</h2>
+                    <p>HerbID is an ML-powered platform dedicated to helping people identify and learn about medicinal plants from around the world. Our mission is to bridge traditional herbal knowledge with modern technology.</p>
+<p>Whether you're a herbalist, researcher, or nature enthusiast, HerbID provides accurate, science-backed information to help you safely explore the world of medicinal plants.</p>
+                    <button class="btn btn-primary">Learn More About Us</button>
+                </div>
+                <div class="about-image">
+                    <img src="https://banner2.cleanpng.com/20180404/jze/avhxdbz2f.webp" alt="About HerbID">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="mainFooter">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-leaf"></i>
+                    <h3>HerbID</h3>
+                    <p>Your guide to medicinal plants</p>
+                </div>
+                <div class="footer-links">
+                    <div class="links-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#how-it-works">How It Works</a></li>
+                            <li><a href="#plant-library">Plant Library</a></li>
+                            <li><a href="#about">About</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Research</a></li>
+                            <li><a href="#">Safety Guide</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for plant tips and updates</p>
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p>&copy; 2025 HerbID. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+   <script>
+        // Login System
+        const loginPage = document.getElementById('loginPage');
+        const loginForm = document.getElementById('loginForm');
+        const mainHeader = document.getElementById('mainHeader');
+        const mainContent = document.getElementById('mainContent');
+        const mainFooter = document.getElementById('mainFooter');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const closeLogin = document.querySelector('.close-login');
+        
+        // Show login page by default
+        loginPage.style.display = 'flex';
+        
+        // Hide main content initially
+        mainHeader.style.display = 'none';
+        document.querySelectorAll('main section, footer').forEach(section => {
+            section.style.display = 'none';
+        });
+        
+        // Close login handler
+        closeLogin.addEventListener('click', () => {
+            loginPage.style.display = 'none';
+            mainHeader.style.display = 'block';
+            document.querySelectorAll('main section, footer').forEach(section => {
+                section.style.display = 'block';
+            });
+        });
+        
+        // Login form submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simple validation (in a real app, you'd check against a database)
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (email && password) {
+                // Hide login page
+                loginPage.style.display = 'none';
+                
+                // Show main content
+                mainHeader.style.display = 'block';
+                document.querySelectorAll('main section, footer').forEach(section => {
+                    section.style.display = 'block';
+                });
+            } else {
+                alert('Please enter both email and password');
+            }
+        });
+        
+        // Logout functionality
+        logoutBtn.addEventListener('click', () => {
+            // Show login page
+            loginPage.style.display = 'flex';
+            
+            // Hide main content
+            mainHeader.style.display = 'none';
+            document.querySelectorAll('main section, footer').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Clear form
+            loginForm.reset();
+        });
+
+        // Camera Access and Capture
+        const cameraOption = document.getElementById('cameraOption');
+        const uploadOption = document.getElementById('uploadOption');
+        const uploadArea = document.getElementById('uploadArea');
+        const cameraContainer = document.getElementById('cameraContainer');
+        const cameraPreview = document.getElementById('cameraPreview');
+        const captureBtn = document.getElementById('captureBtn');
+        const cancelCameraBtn = document.getElementById('cancelCameraBtn');
+        const fileInput = document.getElementById('fileInput');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        let stream = null;
+        
+        cameraOption.addEventListener('click', async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: 'environment' } 
+                });
+                cameraPreview.srcObject = stream;
+                uploadArea.style.display = 'none';
+                cameraContainer.style.display = 'flex';
+            } catch (err) {
+                alert('Could not access the camera. Please make sure you have granted camera permissions.');
+                console.error('Camera error:', err);
+            }
+        });
+        
+        uploadOption.addEventListener('click', () => {
+            uploadArea.style.display = 'block';
+            cameraContainer.style.display = 'none';
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        });
+        
+        captureBtn.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = cameraPreview.videoWidth;
+            canvas.height = cameraPreview.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(cameraPreview, 0, 0, canvas.width, canvas.height);
+            
+            // Convert canvas to blob and create file
+            canvas.toBlob((blob) => {
+                const file = new File([blob], 'captured-plant.jpg', { type: 'image/jpeg' });
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                fileInput.files = dataTransfer.files;
+                
+                // Update UI
+                uploadArea.innerHTML = <i class="fas fa-check-circle"></i><p>captured-plant.jpg selected</p>;
+                uploadArea.classList.add('file-selected');
+                uploadArea.style.display = 'block';
+                cameraContainer.style.display = 'none';
+                
+                // Stop camera
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+            }, 'image/jpeg', 0.9);
+        });
+        
+        cancelCameraBtn.addEventListener('click', () => {
+            uploadArea.style.display = 'block';
+            cameraContainer.style.display = 'none';
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        });
+        
+        // File Upload Handling
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                uploadArea.innerHTML = <i class="fas fa-check-circle"></i><p>${e.target.files[0].name} selected</p>;
+                uploadArea.classList.add('file-selected');
+            }
+        });
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            uploadArea.classList.add('highlight');
+        }
+        
+        function unhighlight() {
+            uploadArea.classList.remove('highlight');
+        }
+        
+        uploadArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            fileInput.files = files;
+            if (files.length) {
+                uploadArea.innerHTML = `<i class="fas fa-check-circle"></i><p>${files[0].name} selected</p>`;
+                uploadArea.classList.add('file-selected');
+            }
+        }
+
+        // Submit button functionality
+        submitBtn.addEventListener('click', async () => {
+    if (fileInput.files.length === 0) {
+        alert('Please upload or capture an image first');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/predict", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.result) {
+            alert(`🌿 Plant Identified: ${data.result}\n🔬 Confidence: ${data.confidence}`);
+        } else {
+            alert("❌ Failed to get prediction. Please try again.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("🚫 Error connecting to the server. Is the Flask app running?");
+    }
+});
+    
+</script>
+</body>
+</html>  -->
